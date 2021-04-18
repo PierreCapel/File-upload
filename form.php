@@ -36,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo 'upload error number ' . $_FILES["profilePicture"]['error'];
     }
 }
-$_POST['img'] = $filePath;
 ?>
 <!--formulaire-->
 <p> Profile Picture :
