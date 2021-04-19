@@ -25,15 +25,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             //upload depuis repertoire temp vers chemin spécifié
             move_uploaded_file($_FILES['profilePicture']['tmp_name'], $uploadFile);
             //preparation du nom du fichier pour passage dans $post pour afficher sur la page profil
-            var_dump($uploadFile);
             $filePath = explode("/", $uploadFile);
             $filePath = end($filePath);
-            echo 'Profile picture uploaded!';
+            //affiche message ok ou erreurs
+            if(!empty($_FILES["profilePicture"]['error'])){
+                if (empty($errors) || ($_FILES["profilePicture"]['error']) === !0) {
+                    echo 'upload error number ' . $_FILES["profilePicture"]['error'];
+                }
+            }
+            else{
+                echo 'Profile picture uploaded!';
+            }
         }
-    }
-    //affiche message ok ou erreurs
-    if (empty($errors) && ($_FILES["profilePicture"]['error']) === !0) {
-        echo 'upload error number ' . $_FILES["profilePicture"]['error'];
     }
 }
 ?>
